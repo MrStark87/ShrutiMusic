@@ -52,7 +52,7 @@ def welcomepic(pic, user, chat, id, uname):
     # Profile Picture → Right side golden circle
     # Circle center: ~(1932, 802), ring inner radius ~340px
     # ────────────────────────────────────────────────────────────────────────
-    pfp_size = 420   # golden ring ke andar fit
+    pfp_size = 455   # golden ring ke andar fit
     try:
         pfp = Image.open(pic).convert("RGBA")
     except Exception:
@@ -60,8 +60,8 @@ def welcomepic(pic, user, chat, id, uname):
 
     pfp = circle(pfp, size=(pfp_size, pfp_size))
 
-    cx    = 1180
-    cy    = 500
+    cx    = 990
+    cy    = 395
     pfp_x = cx - pfp_size // 2             # 1592
     pfp_y = cy - pfp_size // 2             # 462
     background.paste(pfp, (pfp_x, pfp_y), pfp)
@@ -81,7 +81,7 @@ def welcomepic(pic, user, chat, id, uname):
     line_gap     = 70
     total_h      = line_gap * 2
     text_x       = 120                      # ← box ke andar left margin
-    text_start_y = 360                     # ← (box_center_y - total_h // 2)
+    text_start_y = 190                     # ← (box_center_y - total_h // 2)
 
     uname_str  = f"@{uname}" if uname else "Not Set"
     name_clean = unidecode(user)[:18]       # lambe naam trim
