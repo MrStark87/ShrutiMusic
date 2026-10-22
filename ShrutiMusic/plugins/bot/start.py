@@ -1,3 +1,4 @@
+import random
 import time
 
 from pyrogram import filters
@@ -24,9 +25,21 @@ from config import BANNED_USERS
 from strings import get_string
 
 
+START_REACTIONS = ["👍", "🔥", "🥰", "👏", "😁", "🎉", "🤩", "💯", "⚡", "😍", "🫡", "😎", "🆒", "🤗"]
+
+
+async def react_to_start(message: Message):
+    try:
+        await message.react(random.choice(START_REACTIONS))
+    except Exception:
+        pass
+
+
+
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
+    await react_to_start(message)
     await add_served_user(message.from_user.id)
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
@@ -35,6 +48,7 @@ async def start_pm(client, message: Message, _):
             try:
                 return await message.reply_photo(
                     photo=config.START_IMG_URL,
+                    has_spoiler=True,
                     caption=_["help_1"].format(config.SUPPORT_GROUP),
                     reply_markup=keyboard,
                     message_effect_id=5159385139981059251,
@@ -42,6 +56,7 @@ async def start_pm(client, message: Message, _):
             except:
                 return await message.reply_photo(
                     photo=config.START_IMG_URL,
+                    has_spoiler=True,
                     caption=_["help_1"].format(config.SUPPORT_GROUP),
                     reply_markup=keyboard,
                 )
@@ -105,6 +120,7 @@ async def start_pm(client, message: Message, _):
             try:
                 await message.reply_photo(
                     photo=config.START_IMG_URL,
+                    has_spoiler=True,
                     caption=_["start_2"].format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM),
                     reply_markup=InlineKeyboardMarkup(out),
                     message_effect_id=5159385139981059251,
@@ -112,6 +128,7 @@ async def start_pm(client, message: Message, _):
             except:
                 await message.reply_photo(
                     photo=config.START_IMG_URL,
+                    has_spoiler=True,
                     caption=_["start_2"].format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM),
                     reply_markup=InlineKeyboardMarkup(out),
                 )
@@ -126,6 +143,7 @@ async def start_pm(client, message: Message, _):
         try:
             await message.reply_photo(
                 photo=config.START_IMG_URL,
+                has_spoiler=True,
                 caption=_["start_2"].format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM),
                 reply_markup=InlineKeyboardMarkup(out),
                 message_effect_id=5159385139981059251,
@@ -133,6 +151,7 @@ async def start_pm(client, message: Message, _):
         except:
             await message.reply_photo(
                 photo=config.START_IMG_URL,
+                has_spoiler=True,
                 caption=_["start_2"].format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM),
                 reply_markup=InlineKeyboardMarkup(out),
             )
@@ -146,11 +165,13 @@ async def start_pm(client, message: Message, _):
 @app.on_message(filters.command(["start"]) & filters.group & ~BANNED_USERS)
 @LanguageStart
 async def start_gp(client, message: Message, _):
+    await react_to_start(message)
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
     try:
         await message.reply_photo(
             photo=config.START_IMG_URL,
+            has_spoiler=True,
             caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
             reply_markup=InlineKeyboardMarkup(out),
             message_effect_id=5159385139981059251,
@@ -158,6 +179,7 @@ async def start_gp(client, message: Message, _):
     except:
         await message.reply_photo(
             photo=config.START_IMG_URL,
+            has_spoiler=True,
             caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
             reply_markup=InlineKeyboardMarkup(out),
         )
@@ -194,6 +216,7 @@ async def welcome(client, message: Message):
                 try:
                     await message.reply_photo(
                         photo=config.START_IMG_URL,
+                        has_spoiler=True,
                         caption=_["start_3"].format(
                             message.from_user.first_name,
                             app.mention,
@@ -206,6 +229,7 @@ async def welcome(client, message: Message):
                 except:
                     await message.reply_photo(
                         photo=config.START_IMG_URL,
+                        has_spoiler=True,
                         caption=_["start_3"].format(
                             message.from_user.first_name,
                             app.mention,
@@ -218,3 +242,4 @@ async def welcome(client, message: Message):
                 await message.stop_propagation()
         except Exception as ex:
             print(ex)
+                    
