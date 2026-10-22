@@ -9,8 +9,8 @@ API_ID = int(os.getenv("API_ID"))
 API_HASH = os.getenv("API_HASH")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 OWNER_ID = int(os.getenv("OWNER_ID", None))
-OWNER_USERNAME = os.getenv("OWNER_USERNAME", "WTF_WhyMeeh")
-BOT_USERNAME = os.getenv("BOT_USERNAME", "ShrutixMusicBot")
+OWNER_USERNAME = os.getenv("OWNER_USERNAME", "CoderxStark)
+BOT_USERNAME = os.getenv("BOT_USERNAME", "ShreyaxMusic_Bot)
 
 MONGO_DB_URI = os.getenv("MONGO_DB_URI", None)
 LOG_GROUP_ID = int(os.getenv("LOG_GROUP_ID", None))
@@ -46,13 +46,13 @@ STRING5 = os.getenv("STRING_SESSION5", None)
 
 AUTO_LEAVING_ASSISTANT = bool(os.getenv("AUTO_LEAVING_ASSISTANT", False))
 
-START_IMG_URL = os.getenv("START_IMG_URL", "https://files.catbox.moe/7q8bfg.jpg")
-PING_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
-PLAYLIST_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
-STATS_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
+START_IMG_URL = os.getenv("START_IMG_URL", "https://i.ibb.co/Cp77W16B/13029dea-d1ee-46da-8b0e-578e8dc4884d.jpg")
+PING_IMG_URL = "https://files.catbox.moe/3rdf9a.jpg"
+PLAYLIST_IMG_URL = "https://files.catbox.moe/yp0cak.jpg"
+STATS_IMG_URL = "https://files.catbox.moe/yp0cak.jpg"
 TELEGRAM_AUDIO_URL = "https://files.catbox.moe/eehxb4.jpg"
 TELEGRAM_VIDEO_URL = "https://files.catbox.moe/eehxb4.jpg"
-STREAM_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
+STREAM_IMG_URL = "https://i.ibb.co/Cp77W16B/13029dea-d1ee-46da-8b0e-578e8dc4884d.jpg"
 SOUNCLOUD_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
 YOUTUBE_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
 SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
