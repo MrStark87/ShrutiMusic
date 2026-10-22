@@ -1,399 +1,243 @@
-# Copyright (c) 2025 Nand Yaduwanshi <NoxxOP>
-# Location: Supaul, Bihar
-#
-# All rights reserved.
-#
-# This code is the intellectual property of Nand Yaduwanshi.
-# You are not allowed to copy, modify, redistribute, or use this
-# code for commercial or personal projects without explicit permission.
-#
-# Allowed:
-# - Forking for personal learning
-# - Submitting improvements via pull requests
-#
-# Not Allowed:
-# - Claiming this code as your own
-# - Re-uploading without credit or permission
-# - Selling or using commercially
-#
-# Contact for permissions:
-# Email: badboy809075@gmail.com
-#
-# ATLEAST GIVE CREDITS IF YOU STEALING :
-# ELSE NO FURTHER PUBLIC THUMBNAIL UPDATES
-
 import os
-import random
-import aiohttp
+import re
 import aiofiles
-import traceback
-from pathlib import Path
-from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageEnhance
+import aiohttp
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 from py_yt import VideosSearch
-from ShrutiMusic import app
-import math
+from config import YOUTUBE_IMG_URL as FAILED
 
-CACHE_DIR = Path("cache")
-CACHE_DIR.mkdir(exist_ok=True)
+# ── Canvas — 16:10 ───────────────────────────────────────────────────────────
+CANVAS_W, CANVAS_H = 1280, 800
 
-CANVAS_W, CANVAS_H = 1320, 760
+# ── Frosted glass panel ───────────────────────────────────────────────────────
+PANEL_W, PANEL_H = 900, 670
+PANEL_X          = (CANVAS_W - PANEL_W) // 2    # 190
+PANEL_Y          = (CANVAS_H - PANEL_H) // 2    # 65
+PANEL_RADIUS     = 40
+PANEL_ALPHA      = 200
 
-FONT_REGULAR_PATH = "ShrutiMusic/assets/font2.ttf"
-FONT_BOLD_PATH = "ShrutiMusic/assets/font3.ttf"
-DEFAULT_THUMB = "ShrutiMusic/assets/ShrutiBots.jpg"
+# ── Song thumbnail inside panel (16:9 crop) ───────────────────────────────────
+THUMB_W, THUMB_H = 768, 432
+THUMB_X          = PANEL_X + (PANEL_W - THUMB_W) // 2
+THUMB_Y          = PANEL_Y + 26
+THUMB_RADIUS     = 18
 
+# ── Text ─────────────────────────────────────────────────────────────────────
+TEXT_LEFT       = PANEL_X + 36
+TITLE_Y         = THUMB_Y + THUMB_H + 20
+META_Y          = TITLE_Y + 48
+MAX_TITLE_WIDTH = PANEL_W - 72
 
-def wrap_text(draw, text, font, max_width):
-    words = text.split()
-    lines = []
-    current_line = ""
-    
-    for word in words:
-        test_line = current_line + (" " if current_line else "") + word
-        if draw.textlength(test_line, font=font) <= max_width:
-            current_line = test_line
-        else:
-            if current_line:
-                lines.append(current_line)
-            current_line = word
-    
-    if current_line:
-        lines.append(current_line)
-    
-    return lines[:2]
+# ── Progress bar ──────────────────────────────────────────────────────────────
+BAR_X         = PANEL_X + 36
+BAR_Y         = META_Y + 42
+BAR_TOTAL_LEN = PANEL_W - 72
+BAR_RED_RATIO = 0.6
+BAR_RED_LEN   = int(BAR_TOTAL_LEN * BAR_RED_RATIO)
+BAR_DOT_R     = 10
 
+# ── Icons row ─────────────────────────────────────────────────────────────────
+ICONS_W, ICONS_H = 380, 44
+ICONS_X = PANEL_X + (PANEL_W - ICONS_W) // 2
+ICONS_Y = BAR_Y + 36
+icons_path = "ShrutiMusic/assets/play_icons.png"
+# ── Branding ──────────────────────────────────────────────────────────────────
+BRAND_TEXT      = "[ Midnight Music]"
+BRAND_FONT_SIZE = 32
 
-def random_gradient():
-    colors = [
-        [(15, 12, 41), (48, 43, 99), (36, 36, 62)],
-        [(10, 10, 10), (35, 35, 40), (20, 20, 25)],
-        [(26, 26, 46), (56, 56, 86), (40, 40, 60)],
-        [(20, 25, 35), (45, 50, 70), (30, 35, 50)],
-        [(12, 17, 30), (38, 43, 65), (25, 30, 45)],
-        [(18, 18, 28), (48, 48, 68), (32, 32, 48)],
-        [(8, 15, 25), (28, 40, 55), (18, 28, 40)],
-        [(22, 22, 35), (52, 52, 75), (35, 35, 55)],
-        [(14, 20, 28), (44, 50, 68), (28, 35, 48)],
-        [(16, 14, 38), (46, 44, 88), (30, 28, 60)],
-    ]
-    return random.choice(colors)
+# ── Cache ─────────────────────────────────────────────────────────────────────
+CACHE_DIR = "cache"
+os.makedirs(CACHE_DIR, exist_ok=True)
 
 
-def apply_gradient(canvas, colors):
-    overlay = Image.new('RGBA', canvas.size, (0, 0, 0, 0))
-    draw = ImageDraw.Draw(overlay)
-    
-    for y in range(CANVAS_H):
-        progress = y / CANVAS_H
-        
-        if progress < 0.4:
-            t = progress / 0.4
-            r = int(colors[0][0] * (1-t) + colors[1][0] * t)
-            g = int(colors[0][1] * (1-t) + colors[1][1] * t)
-            b = int(colors[0][2] * (1-t) + colors[1][2] * t)
-        else:
-            t = (progress - 0.4) / 0.6
-            r = int(colors[1][0] * (1-t) + colors[2][0] * t)
-            g = int(colors[1][1] * (1-t) + colors[2][1] * t)
-            b = int(colors[1][2] * (1-t) + colors[2][2] * t)
-        
-        draw.line([(0, y), (CANVAS_W, y)], fill=(r, g, b, 255))
-    
-    return Image.alpha_composite(canvas, overlay)
+# ─────────────────────────────────────────────────────────────────────────────
+# Helpers
+# ─────────────────────────────────────────────────────────────────────────────
+
+def trim_to_width(text: str, font: ImageFont.FreeTypeFont, max_w: int) -> str:
+    ellipsis = "…"
+    if font.getlength(text) <= max_w:
+        return text
+    for i in range(len(text) - 1, 0, -1):
+        if font.getlength(text[:i] + ellipsis) <= max_w:
+            return text[:i] + ellipsis
+    return ellipsis
 
 
-def random_layout():
-    layouts = [
-        {
-            'art_size': random.randint(420, 520),
-            'art_x': random.randint(60, 120),
-            'art_shape': random.choice(['circle', 'rounded', 'diamond']),
-            'text_align': 'right',
-            'accent_style': random.choice(['line', 'dot', 'wave']),
-            'show_particles': random.choice([True, False])
-        },
-        {
-            'art_size': random.randint(400, 500),
-            'art_x': CANVAS_W - random.randint(520, 620),
-            'art_shape': random.choice(['circle', 'rounded', 'square']),
-            'text_align': 'left',
-            'accent_style': random.choice(['line', 'glow', 'none']),
-            'show_particles': random.choice([True, False])
-        },
-        {
-            'art_size': random.randint(380, 480),
-            'art_x': random.randint(80, 140),
-            'art_shape': random.choice(['circle', 'hexagon', 'rounded']),
-            'text_align': 'right',
-            'accent_style': random.choice(['dot', 'wave', 'glow']),
-            'show_particles': random.choice([True, False])
-        }
-    ]
-    return random.choice(layouts)
+def rounded_paste(base: Image.Image, layer: Image.Image, pos: tuple, radius: int):
+    """Paste layer onto base with a rounded-rectangle alpha mask."""
+    mask = Image.new("L", layer.size, 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, *layer.size), radius, fill=255)
+    base.paste(layer, pos, mask)
 
 
-def create_shape_mask(size, shape):
-    mask = Image.new("L", (size, size), 0)
-    draw = ImageDraw.Draw(mask)
-    
-    if shape == 'circle':
-        draw.ellipse([0, 0, size, size], fill=255)
-    elif shape == 'rounded':
-        radius = random.randint(40, 80)
-        draw.rounded_rectangle([0, 0, size, size], radius=radius, fill=255)
-    elif shape == 'square':
-        draw.rectangle([0, 0, size, size], fill=255)
-    elif shape == 'diamond':
-        points = [(size//2, 0), (size, size//2), (size//2, size), (0, size//2)]
-        draw.polygon(points, fill=255)
-    elif shape == 'hexagon':
-        center = size // 2
-        radius = size // 2 - 10
-        points = []
-        for i in range(6):
-            angle = math.pi / 3 * i
-            x = center + radius * math.cos(angle)
-            y = center + radius * math.sin(angle)
-            points.append((x, y))
-        draw.polygon(points, fill=255)
-    
-    return mask
+def draw_frosted_panel(bg: Image.Image,
+                       x: int, y: int, w: int, h: int,
+                       radius: int, alpha: int):
+    """Blur the region, add white frost overlay, paste with rounded mask + border."""
+    region         = bg.crop((x, y, x + w, y + h)).convert("RGBA")
+    blurred_region = region.filter(ImageFilter.GaussianBlur(20))
+    frost          = Image.new("RGBA", (w, h), (255, 255, 255, alpha))
+    frosted        = Image.alpha_composite(blurred_region, frost)
+
+    mask = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, w, h), radius, fill=255)
+    bg.paste(frosted, (x, y), mask)
+
+    # Thin white border ring
+    border = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    ImageDraw.Draw(border).rounded_rectangle(
+        (0, 0, w - 1, h - 1), radius,
+        outline=(255, 255, 255, 170), width=3
+    )
+    bg.paste(border, (x, y), border)
 
 
-def random_accent_color():
-    colors = [
-        (88, 166, 255),
-        (138, 180, 248),
-        (156, 163, 255),
-        (200, 200, 220),
-        (180, 190, 254),
-        (120, 200, 255),
-        (165, 177, 255),
-        (255, 170, 128),
-        (255, 138, 180),
-        (148, 226, 213),
-    ]
-    return random.choice(colors)
+# ─────────────────────────────────────────────────────────────────────────────
+# Main
+# ─────────────────────────────────────────────────────────────────────────────
 
+async def gen_thumb(videoid: str) -> str:
+    cache_path = os.path.join(CACHE_DIR, f"{videoid}_kelly.png")
+    if os.path.exists(cache_path):
+        return cache_path
 
-def add_particles(draw, accent_color):
-    for _ in range(random.randint(15, 30)):
-        x = random.randint(0, CANVAS_W)
-        y = random.randint(0, CANVAS_H)
-        size = random.randint(1, 4)
-        alpha = random.randint(40, 120)
-        draw.ellipse([x, y, x+size, y+size], fill=(*accent_color, alpha))
-
-
-def add_accent_elements(draw, layout, accent_color):
-    style = layout['accent_style']
-    
-    if style == 'line':
-        y_pos = random.randint(100, 200)
-        x_start = random.randint(30, 100)
-        length = random.randint(200, 400)
-        width = random.randint(2, 4)
-        draw.line([(x_start, y_pos), (x_start + length, y_pos)], 
-                 fill=(*accent_color, 180), width=width)
-    
-    elif style == 'dot':
-        for _ in range(random.randint(3, 8)):
-            x = random.randint(40, CANVAS_W - 40)
-            y = random.randint(40, CANVAS_H - 40)
-            size = random.randint(4, 10)
-            draw.ellipse([x, y, x+size, y+size], fill=(*accent_color, 100))
-    
-    elif style == 'wave':
-        y_start = random.randint(80, 150)
-        for x in range(0, CANVAS_W, 3):
-            wave_y = y_start + int(math.sin(x / 50) * 20)
-            draw.ellipse([x, wave_y, x+2, wave_y+2], fill=(*accent_color, 60))
-
-
-def add_glow_ring(canvas, x, y, size, color, blur_amount):
-    ring_size = size + 30
-    ring_img = Image.new("RGBA", (ring_size, ring_size), (0, 0, 0, 0))
-    rdraw = ImageDraw.Draw(ring_img)
-    
-    for i in range(5):
-        offset = i * 5
-        alpha = 150 - (i * 30)
-        rdraw.ellipse([offset, offset, ring_size - offset, ring_size - offset],
-                     outline=(*color, alpha), width=3)
-    
-    ring_img = ring_img.filter(ImageFilter.GaussianBlur(blur_amount))
-    canvas.paste(ring_img, (x - 15, y - 15), ring_img)
-
-
-async def gen_thumb(videoid: str):
-    url = f"https://www.youtube.com/watch?v={videoid}"
-    thumb_path = None
-    
+    # ── Fetch metadata ────────────────────────────────────────────────────────
+    results = VideosSearch(f"https://www.youtube.com/watch?v={videoid}", limit=1)
     try:
-        results = VideosSearch(url, limit=1)
-        result = (await results.next())["result"][0]
+        results_data = await results.next()
+        result_items = results_data.get("result", [])
+        if not result_items:
+            raise ValueError("No results found.")
+        data      = result_items[0]
+        title     = re.sub(r"\W+", " ", data.get("title", "Unsupported Title")).title()
+        thumbnail = data.get("thumbnails", [{}])[0].get("url", FAILED)
+        duration  = data.get("duration")
+        views     = data.get("viewCount", {}).get("short", "Unknown Views")
+        channel   = data.get("channel",   {}).get("name",  "Unknown Channel")
+    except Exception:
+        title, thumbnail, duration, views, channel = (
+            "Unsupported Title", FAILED, None, "Unknown Views", "Unknown Channel"
+        )
 
-        title = result.get("title", "Unknown Title")
-        duration = result.get("duration", "Unknown")
-        thumburl = result["thumbnails"][0]["url"].split("?")[0]
-        views = result.get("viewCount", {}).get("short", "Unknown Views")
-        channel = result.get("channel", {}).get("name", "Unknown Channel")
+    is_live       = not duration or str(duration).strip().lower() in {"", "live", "live now"}
+    duration_text = "Live" if is_live else (duration or "Unknown")
 
-        try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(thumburl) as resp:
-                    if resp.status == 200:
-                        thumb_path = CACHE_DIR / f"thumb{videoid}.png"
-                        async with aiofiles.open(thumb_path, "wb") as f:
-                            await f.write(await resp.read())
-        except:
-            pass
-
-        if thumb_path and thumb_path.exists():
-            base_img = Image.open(thumb_path).convert("RGBA")
-        else:
-            base_img = Image.open(DEFAULT_THUMB).convert("RGBA")
-
-    except Exception as e:
-        print(f"[gen_thumb Error - Using Default] {e}")
-        try:
-            base_img = Image.open(DEFAULT_THUMB).convert("RGBA")
-            title = "ShrutiMusic"
-            duration = "Unknown"
-            views = "Unknown Views"
-            channel = "ShrutiBots"
-        except:
-            traceback.print_exc()
-            return None
-
+    # ── Download YouTube thumbnail ─────────────────────────────────────────────
+    raw_path = os.path.join(CACHE_DIR, f"raw_{videoid}.png")
     try:
-        canvas = Image.new("RGBA", (CANVAS_W, CANVAS_H), (0, 0, 0, 255))
-        
-        gradient_colors = random_gradient()
-        canvas = apply_gradient(canvas, gradient_colors)
-        
-        layout = random_layout()
-        accent_color = random_accent_color()
-        
-        if layout['show_particles']:
-            draw = ImageDraw.Draw(canvas)
-            add_particles(draw, accent_color)
-            canvas = canvas.filter(ImageFilter.GaussianBlur(1))
-        
-        art_size = layout['art_size']
-        art_x = layout['art_x']
-        art_y = (CANVAS_H - art_size) // 2
-        
-        mask = create_shape_mask(art_size, layout['art_shape'])
-        art = base_img.resize((art_size, art_size), Image.LANCZOS)
-        art.putalpha(mask)
-        
-        if random.choice([True, False]):
-            add_glow_ring(canvas, art_x, art_y, art_size, accent_color, random.randint(8, 15))
-        
-        canvas.paste(art, (art_x, art_y), art)
-        
-        draw = ImageDraw.Draw(canvas)
-        
-        add_accent_elements(draw, layout, accent_color)
-        
-        brand_font = ImageFont.truetype(FONT_BOLD_PATH, random.randint(36, 48))
-        brand_x = random.randint(35, 60)
-        brand_y = random.randint(25, 45)
-        
-        shadow_offset = 2
-        draw.text((brand_x + shadow_offset, brand_y + shadow_offset), 
-                 app.username, fill=(0, 0, 0, 150), font=brand_font)
-        draw.text((brand_x, brand_y), app.username, fill=(255, 255, 255, 255), font=brand_font)
-        
-        brand_bbox = draw.textbbox((brand_x, brand_y), app.username, font=brand_font)
-        brand_w = brand_bbox[2] - brand_bbox[0]
-        underline_y = brand_bbox[3] + 6
-        draw.line([(brand_x, underline_y), (brand_x + brand_w, underline_y)], 
-                 fill=(*accent_color, 200), width=3)
-        
-        if layout['text_align'] == 'right':
-            info_x = art_x + art_size + random.randint(60, 100)
-            max_text_w = CANVAS_W - info_x - 50
-        else:
-            info_x = random.randint(50, 100)
-            max_text_w = art_x - info_x - 50
-        
-        np_options = ["NOW PLAYING", "PLAYING NOW", "NOW PLAYING", "PLAYING"]
-        np_font = ImageFont.truetype(FONT_BOLD_PATH, random.randint(50, 70))
-        np_text = random.choice(np_options)
-        np_y = random.randint(120, 160)
-        
-        np_shadow = 3
-        draw.text((info_x + np_shadow, np_y + np_shadow), np_text, 
-                 fill=(0, 0, 0, 180), font=np_font)
-        draw.text((info_x, np_y), np_text, fill=(*accent_color, 255), font=np_font)
-        
-        title_font_size = random.randint(36, 48)
-        title_font = ImageFont.truetype(FONT_BOLD_PATH, title_font_size)
-        title_lines = wrap_text(draw, title, title_font, max_text_w)
-        title_text = "\n".join(title_lines)
-        title_y = np_y + random.randint(70, 100)
-        
-        title_shadow = 2
-        draw.multiline_text((info_x + title_shadow, title_y + title_shadow), title_text, 
-                          fill=(0, 0, 0, 160), font=title_font, 
-                          spacing=random.randint(8, 15))
-        draw.multiline_text((info_x, title_y), title_text, 
-                          fill=(255, 255, 255, 255), font=title_font, 
-                          spacing=random.randint(8, 15))
-        
-        meta_font = ImageFont.truetype(FONT_REGULAR_PATH, random.randint(28, 36))
-        meta_y = title_y + random.randint(120, 160)
-        line_spacing = random.randint(45, 60)
-        
-        duration_label = duration
-        if duration and ":" in duration:
-            parts = duration.split(":")
-            if len(parts) == 2 and parts[0].isdigit():
-                duration_label = f"{parts[0]}m {parts[1]}s"
-        
-        meta_labels = random.choice([
-            ["Views", "Duration", "Channel"],
-            ["", "", ""]
-        ])
-        
-        meta_items = [
-            f"{meta_labels[0]} {views}" if meta_labels[0] else f"{views}",
-            f"{meta_labels[1]} {duration_label}" if meta_labels[1] else f"{duration_label}",
-            f"{meta_labels[2]} {channel}" if meta_labels[2] else f"{channel}"
-        ]
-        
-        for idx, meta in enumerate(meta_items):
-            y = meta_y + (idx * line_spacing)
-            draw.text((info_x + 1, y + 1), meta, fill=(0, 0, 0, 140), font=meta_font)
-            draw.text((info_x, y), meta, fill=(220, 220, 230, 255), font=meta_font)
-        
-        if random.choice([True, False]):
-            corner_size = random.randint(30, 50)
-            corner_width = random.randint(2, 4)
-            corner_color = (*accent_color, 120)
-            
-            draw.line([(25, 25), (25 + corner_size, 25)], fill=corner_color, width=corner_width)
-            draw.line([(25, 25), (25, 25 + corner_size)], fill=corner_color, width=corner_width)
-            
-            draw.line([(CANVAS_W - 25, 25), (CANVAS_W - 25 - corner_size, 25)], 
-                     fill=corner_color, width=corner_width)
-            draw.line([(CANVAS_W - 25, 25), (CANVAS_W - 25, 25 + corner_size)], 
-                     fill=corner_color, width=corner_width)
-        
-        out = CACHE_DIR / f"{videoid}_final.png"
-        canvas.save(out, quality=95, optimize=True)
+        async with aiohttp.ClientSession() as session:
+            async with session.get(thumbnail) as resp:
+                if resp.status == 200:
+                    async with aiofiles.open(raw_path, "wb") as f:
+                        await f.write(await resp.read())
+    except Exception:
+        return FAILED
 
-        if thumb_path and thumb_path.exists():
-            try:
-                os.remove(thumb_path)
-            except:
-                pass
+    # ── Build canvas ──────────────────────────────────────────────────────────
+    raw = Image.open(raw_path).convert("RGBA")
 
-        return str(out)
+    # 1. Blurred full-canvas background (16:10)
+    bg = raw.resize((CANVAS_W, CANVAS_H), Image.LANCZOS)
+    bg = bg.filter(ImageFilter.GaussianBlur(24))
+    bg = ImageEnhance.Brightness(bg).enhance(0.52)
 
-    except Exception as e:
-        print(f"[gen_thumb Processing Error] {e}")
-        traceback.print_exc()
-        return None
+    # 2. Frosted glass card
+    draw_frosted_panel(bg, PANEL_X, PANEL_Y, PANEL_W, PANEL_H, PANEL_RADIUS, PANEL_ALPHA)
+
+    # 3. Song thumbnail — big, rounded corners, 16:9 inside card
+    thumb_img = raw.resize((THUMB_W, THUMB_H), Image.LANCZOS)
+    rounded_paste(bg, thumb_img, (THUMB_X, THUMB_Y), THUMB_RADIUS)
+
+    # ── Fonts ─────────────────────────────────────────────────────────────────
+    try:
+        font_title = ImageFont.truetype("ShrutiMusic/assets/font.ttf",  34)
+        font_meta  = ImageFont.truetype("ShrutiMusic/assets/font2.ttf", 22)
+        font_time  = ImageFont.truetype("ShrutiMusic/assets/font2.ttf", 20)
+        font_brand = ImageFont.truetype("ShrutiMusic/assets/font.ttf",  BRAND_FONT_SIZE)
+    except OSError:
+        font_title = font_meta = font_time = font_brand = ImageFont.load_default()
+
+    draw = ImageDraw.Draw(bg)
+
+    # ── Title ─────────────────────────────────────────────────────────────────
+    draw.text(
+        (TEXT_LEFT, TITLE_Y),
+        trim_to_width(title, font_title, MAX_TITLE_WIDTH),
+        fill=(15, 15, 15),
+        font=font_title
+    )
+
+    # ── Meta ──────────────────────────────────────────────────────────────────
+    draw.text(
+        (TEXT_LEFT, META_Y),
+        f"YouTube  |  {views}",
+        fill=(55, 55, 55),
+        font=font_meta
+    )
+
+    # ── Progress bar ──────────────────────────────────────────────────────────
+    # Gray track
+    draw.rounded_rectangle(
+        [(BAR_X, BAR_Y - 5), (BAR_X + BAR_TOTAL_LEN, BAR_Y + 5)],
+        radius=5, fill=(185, 185, 185)
+    )
+    # Red played portion (starts at 0)
+    if BAR_RED_LEN > 0:
+        draw.rounded_rectangle(
+            [(BAR_X, BAR_Y - 5), (BAR_X + BAR_RED_LEN, BAR_Y + 5)],
+            radius=5, fill=(220, 30, 30)
+        )
+    # Playhead dot
+    dot_cx = BAR_X + BAR_RED_LEN
+    draw.ellipse(
+        [(dot_cx - BAR_DOT_R, BAR_Y - BAR_DOT_R),
+         (dot_cx + BAR_DOT_R, BAR_Y + BAR_DOT_R)],
+        fill=(220, 30, 30)
+    )
+
+    # Time labels
+    time_y = BAR_Y + BAR_DOT_R + 8
+    draw.text((BAR_X, time_y), "00:00", fill=(40, 40, 40), font=font_time)
+    end_bbox = draw.textbbox((0, 0), duration_text, font=font_time)
+    end_w    = end_bbox[2] - end_bbox[0]
+    draw.text(
+        (BAR_X + BAR_TOTAL_LEN - end_w, time_y),
+        duration_text,
+        fill=(220, 30, 30) if is_live else (40, 40, 40),
+        font=font_time
+    )
+
+    # ── Play icons ────────────────────────────────────────────────────────────
+    icons_path = "ShrutiMusic/assets/play_icons.png"
+    if os.path.isfile(icons_path):
+        ic = Image.open(icons_path).resize((ICONS_W, ICONS_H)).convert("RGBA")
+        r, g, b, a = ic.split()
+        dark_ic = Image.merge("RGBA", (
+            r.point(lambda _: 20),
+            g.point(lambda _: 20),
+            b.point(lambda _: 20),
+            a
+        ))
+        bg.paste(dark_ic, (ICONS_X, ICONS_Y), dark_ic)
+
+    # ── Branding: "Kelly Music 🎶" top-right ──────────────────────────────────
+    brand_bbox = draw.textbbox((0, 0), BRAND_TEXT, font=font_brand)
+    brand_w    = brand_bbox[2] - brand_bbox[0]
+    brand_x    = CANVAS_W - brand_w - 20
+    brand_y    = 16
+
+    # Drop shadow for legibility on any background
+    draw.text((brand_x + 2, brand_y + 2), BRAND_TEXT,
+              fill=(0, 0, 0, 130), font=font_brand)
+    draw.text((brand_x, brand_y), BRAND_TEXT,
+              fill=(255, 255, 255), font=font_brand)
+
+    # ── Save ──────────────────────────────────────────────────────────────────
+    try:
+        os.remove(raw_path)
+    except OSError:
+        pass
+
+    bg.convert("RGB").save(cache_path, quality=95)
+    return cache_path
