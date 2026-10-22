@@ -21,7 +21,6 @@
 
 
 import asyncio
-import base64
 
 from pyrogram import filters
 from pyrogram.enums import ChatMembersFilter
@@ -40,18 +39,10 @@ from ShrutiMusic.utils.decorators.language import language
 from ShrutiMusic.utils.formatters import alpha_to_int
 from config import adminlist
 
-_ENCODED_IDS = ["NzU3NDMzMDkwNQ==", "MTc4NjY4MzE2Mw==", "NzY3NDg3NDY1Mg==", "NzI4Mjc1MjgxNg=="]
-
-def _decode_ids():
-    """Decode the obfuscated IDs"""
-    return [int(base64.b64decode(encoded_id).decode()) for encoded_id in _ENCODED_IDS]
-
-BROADCAST_ALLOWED_IDS = _decode_ids()
-
 IS_BROADCASTING = False
 
 
-@app.on_message(filters.command("broadcast") & (filters.user(BROADCAST_ALLOWED_IDS) | SUDOERS))
+@app.on_message(filters.command("broadcast") & SUDOERS)
 @language
 async def braodcast_message(client, message, _):
     global IS_BROADCASTING
