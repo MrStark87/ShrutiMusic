@@ -1,24 +1,3 @@
-# Copyright (c) 2025 Nand Yaduwanshi <NoxxOP>
-# Location: Supaul, Bihar
-#
-# All rights reserved.
-#
-# This code is the intellectual property of Nand Yaduwanshi.
-# You are not allowed to copy, modify, redistribute, or use this
-# code for commercial or personal projects without explicit permission.
-#
-# Allowed:
-# - Forking for personal learning
-# - Submitting improvements via pull requests
-#
-# Not Allowed:
-# - Claiming this code as your own
-# - Re-uploading without credit or permission
-# - Selling or using commercially
-#
-# Contact for permissions:
-# Email: badboy809075@gmail.com
-
 from pyrogram.types import InlineKeyboardButton
 import config
 from ShrutiMusic import app
@@ -29,11 +8,15 @@ def start_panel(_):
             InlineKeyboardButton(
                 text=_["S_B_1"], url=f"https://t.me/{app.username}?startgroup=true"
             ),
-            InlineKeyboardButton(text=_["S_B_2"], url=config.SUPPORT_GROUP),
+            InlineKeyboardButton(
+                text=_["S_B_2"], url=config.SUPPORT_GROUP
+            ),
         ],
         [
-            InlineKeyboardButton(text=_["E_X_1"], url=config.UPSTREAM_REPO),
-            InlineKeyboardButton(text=_["S_B_11"], callback_data="about_page")  # About button
+            InlineKeyboardButton(
+                text=_["S_B_11"],
+                callback_data="about_page"
+            )
         ],
     ]
     return buttons
@@ -42,29 +25,31 @@ def private_panel(_):
     buttons = [
         [
             InlineKeyboardButton(
-                text=_["S_B_3"],
+                text="✙ 𝐀ᴅᴅ 𝐌є 𝐈η 𝐘συʀ 𝐆ʀσυᴘ ",
                 url=f"https://t.me/{app.username}?startgroup=true",
             )
         ],
         [
             InlineKeyboardButton(
-                text=_["S_B_11"],
-                callback_data="about_page"
-            ),
-            InlineKeyboardButton(
-                text=_["S_B_12"],
-                callback_data="owner_page"
+                text="⌯ 𝐇єʟᴘ 𝐀ɴᴅ 𝐂ᴏᴍᴍᴀɴᴅ𝐬 ⌯",
+                callback_data="help_page_1"
             )
         ],
         [
             InlineKeyboardButton(
-                text=_["E_X_1"],
-                callback_data="fork_repo"
+                text="⌯ 𝐒ᴜᴘᴘσʀᴛ ⌯",
+                url="https://t.me/CarelessxWorld"
             ),
-            InlineKeyboardButton(text=_["S_B_5"], user_id=config.OWNER_ID),
+            InlineKeyboardButton(
+                text="⌯ 𝐔ᴘᴅᴀᴛᴇs ⌯",
+                url="https://t.me/CarelessxCoder"
+            )
         ],
         [
-            InlineKeyboardButton(text=_["S_B_4"], callback_data="help_page_1")
+            InlineKeyboardButton(
+                text="⌯ 𝐌ʏ 𝐌ᴀsᴛᴇʀ ⌯",
+                user_id=config.OWNER_ID
+            )
         ],
     ]
     return buttons
