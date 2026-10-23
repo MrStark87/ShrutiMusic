@@ -1,4 +1,4 @@
-HELP_1 = """<b><u>❖ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅs :</b></u>
+HELP_1 = """<blockquote expandable><b><u>❖ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅs :</b></u></blockquote>
 
 ➥ ᴊᴜꜱᴛ ᴀᴅᴅ <b>ᴄ</b> ɪɴ ᴛʜᴇ ꜱᴛᴀʀᴛɪɴɢ ᴏꜰ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅꜱ ᴛᴏ ᴜꜱᴇ ᴛʜᴇᴍ ꜰᴏʀ ᴄʜᴀɴɴᴇʟ.
 
@@ -12,7 +12,7 @@ HELP_1 = """<b><u>❖ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅs :</b></u>
 """
 
 HELP_2 = """
-<b><u>❖ ᴀᴜᴛʜ ᴜꜱᴇʀꜱ :</b></u>
+<blockquote expandable><b><u>❖ ᴀᴜᴛʜ ᴜꜱᴇʀꜱ :</b></u></blockquote>
 
 ➥ ᴀᴜᴛʜ ᴜꜱᴇʀꜱ ᴄᴀɴ ᴜꜱᴇ ᴀᴅᴍɪɴ ʀɪɢʜᴛꜱ ɪɴ ᴛʜᴇ ʙᴏᴛ ᴡɪᴛʜᴏᴜᴛ ᴀᴅᴍɪɴ ʀɪɢʜᴛꜱ ɪɴ ᴛʜᴇ ᴄʜᴀᴛ. 
 ➥ /auth ➻ <b>ᴀᴅᴅ ᴀ ᴜꜱᴇʀ ᴛᴏ ᴀᴜᴛʜ ʟɪꜱᴛ ᴏꜰ ᴛʜᴇ ʙᴏᴛ</b>
@@ -21,11 +21,11 @@ HELP_2 = """
 """
 
 HELP_3 = """
-<u><b>❖ ʙʀᴏᴀᴅᴄᴀꜱᴛ ꜰᴇᴀᴛᴜʀᴇ</b></u> [ᴏɴʟʏ ꜰᴏʀ ꜱᴜᴅᴏᴇʀꜱ]
+<blockquote expandable><u><b>❖ ʙʀᴏᴀᴅᴄᴀꜱᴛ ꜰᴇᴀᴛᴜʀᴇ</b></u> [ᴏɴʟʏ ꜰᴏʀ ꜱᴜᴅᴏᴇʀꜱ]</blockquote>
 
 ➥ /broadcast ➻ <b>ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴀ ᴍᴇꜱꜱᴀɢᴇ ᴛᴏ ꜱᴇʀᴠᴇᴅ ᴄʜᴀᴛꜱ ᴏꜰ ᴛʜᴇ ʙᴏᴛ</b>
 
-<b>❖ ʙʀᴏᴀᴅᴄᴀꜱᴛɪɴɢ ᴍᴏᴅᴇꜱ :</b>
+<blockquote expandable><b>❖ ʙʀᴏᴀᴅᴄᴀꜱᴛɪɴɢ ᴍᴏᴅᴇꜱ :</b></blockquote>
 
 ➥ -pin ➻ <b>ᴘɪɴꜱ ʏᴏᴜʀ ʙʀᴏᴀᴅᴄᴀꜱᴛᴇᴅ ᴍᴇꜱꜱᴀɢᴇꜱ</b>
 ➥ -pinloud ➻ <b>ᴘɪɴ ᴡɪᴛʜ ɴᴏᴛɪꜰɪᴄᴀᴛɪᴏɴ ᴛᴏ ᴍᴇᴍʙᴇʀꜱ</b>
@@ -36,9 +36,9 @@ HELP_3 = """
 ➥ -wfchat ➻ <b>ꜱᴘᴇᴄɪᴀʟ ᴄʜᴀᴛ ʙʀᴏᴀᴅᴄᴀꜱᴛ</b>
 ➥ -wfuser ➻ <b>ꜱᴘᴇᴄɪᴀʟ ᴜꜱᴇʀ ʙʀᴏᴀᴅᴄᴀꜱᴛ</b>
 
-➥ <b>ɴᴏᴛᴇ ➻ ᴡꜰ ᴍᴏᴅᴇꜱ ʀᴇǫᴜɪʀᴇ ʀᴇᴘʟʏ</b>
+<blockquote expandable>➥ <b>ɴᴏᴛᴇ ➻ ᴡꜰ ᴍᴏᴅᴇꜱ ʀᴇǫᴜɪʀᴇ ʀᴇᴘʟʏ</b></blockquote>
 """
-HELP_4 = """<b><u>❖ ᴄʜᴀᴛ ʙʟᴀᴄᴋʟɪꜱᴛ ꜰᴇᴀᴛᴜʀᴇ :</u></b> [ᴏɴʟʏ ꜰᴏʀ ꜱᴜᴅᴏᴇʀꜱ]
+HELP_4 = """<blockquote expandable><b><u>❖ ᴄʜᴀᴛ ʙʟᴀᴄᴋʟɪꜱᴛ ꜰᴇᴀᴛᴜʀᴇ :</u></b> [ᴏɴʟʏ ꜰᴏʀ ꜱᴜᴅᴏᴇʀꜱ]</blockquote>
 
 ➥ ʀᴇꜱᴛʀɪᴄᴛ ᴄʜᴀᴛꜱ ꜰʀᴏᴍ ᴜꜱɪɴɢ ʙᴏᴛ
 
@@ -48,7 +48,7 @@ HELP_4 = """<b><u>❖ ᴄʜᴀᴛ ʙʟᴀᴄᴋʟɪꜱᴛ ꜰᴇᴀᴛᴜʀᴇ :
 """
 
 HELP_5 = """
-<b><u>❖ ʙʟᴏᴄᴋ ᴜꜱᴇʀꜱ :</u></b> [ᴏɴʟʏ ꜰᴏʀ ꜱᴜᴅᴏᴇʀꜱ]
+<blockquote expandable><b><u>❖ ʙʟᴏᴄᴋ ᴜꜱᴇʀꜱ :</u></b> [ᴏɴʟʏ ꜰᴏʀ ꜱᴜᴅᴏᴇʀꜱ]</blockquote>
 
 ➥ ʙʟᴏᴄᴋᴇᴅ ᴜꜱᴇʀ ᴄᴀɴ'ᴛ ᴜꜱᴇ ʙᴏᴛ
 
@@ -58,7 +58,7 @@ HELP_5 = """
 """
 
 HELP_6 = """
-<b><u>❖ ᴄʜᴀɴɴᴇʟ ᴘʟᴀʏ ᴄᴏᴍᴍᴀɴᴅꜱ :</u></b>
+<blockquote expandable><b><u>❖ ᴄʜᴀɴɴᴇʟ ᴘʟᴀʏ ᴄᴏᴍᴍᴀɴᴅꜱ :</u></b></blockquote>
 
 ➥ ʏᴏᴜ ᴄᴀɴ ꜱᴛʀᴇᴀᴍ ᴀᴜᴅɪᴏ/ᴠɪᴅᴇᴏ ɪɴ ᴄʜᴀɴɴᴇʟ
 
@@ -69,7 +69,7 @@ HELP_6 = """
 """
 
 HELP_7 = """
-<b><u>❖ ɢʟᴏʙᴀʟ ʙᴀɴ ꜰᴇᴀᴛᴜʀᴇ :</u></b> [ᴏɴʟʏ ꜰᴏʀ ꜱᴜᴅᴏᴇʀꜱ]
+<blockquote expandable><b><u>❖ ɢʟᴏʙᴀʟ ʙᴀɴ ꜰᴇᴀᴛᴜʀᴇ :</u></b> [ᴏɴʟʏ ꜰᴏʀ ꜱᴜᴅᴏᴇʀꜱ]</blockquote>
 
 ➥ /gban ➻ <b>ɢʟᴏʙᴀʟʟʏ ʙᴀɴ ᴜꜱᴇʀ</b>
 ➥ /ungban ➻ <b>ᴜɴʙᴀɴ ɢʟᴏʙᴀʟ ᴜꜱᴇʀ</b>
@@ -77,7 +77,7 @@ HELP_7 = """
 """
 
 HELP_8 = """
-<b><u>❖ ʟᴏᴏᴘ ꜱᴛʀᴇᴀᴍ :</u></b>
+<blockquote expandable><b><u>❖ ʟᴏᴏᴘ ꜱᴛʀᴇᴀᴍ :</u></b></blockquote>
 
 ➥ ꜱᴛᴀʀᴛꜱ ꜱᴛʀᴇᴀᴍɪɴɢ ᴄᴜʀʀᴇɴᴛ ꜱᴛʀᴇᴀᴍ ɪɴ ʟᴏᴏᴘ
 
@@ -86,7 +86,7 @@ HELP_8 = """
 """
 
 HELP_9 = """
-<b><u>❖ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ ᴍᴏᴅᴇ :</u></b> [ᴏɴʟʏ ꜰᴏʀ ꜱᴜᴅᴏᴇʀꜱ]
+<blockquote expandable><b><u>❖ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ ᴍᴏᴅᴇ :</u></b> [ᴏɴʟʏ ꜰᴏʀ ꜱᴜᴅᴏᴇʀꜱ]</blockquote>
 
 ➥ /logs ➻ <b>ɢᴇᴛ ʙᴏᴛ ʟᴏɢꜱ</b>
 ➥ /logger ➻ <b>ᴛᴏɢɢʟᴇ ʟᴏɢɢɪɴɢ</b>
@@ -94,7 +94,7 @@ HELP_9 = """
 """
 
 HELP_10 = """
-<b><u>❖ ᴘɪɴɢ & ꜱᴛᴀᴛꜱ :</u></b>
+<blockquote expandable><b><u>❖ ᴘɪɴɢ & ꜱᴛᴀᴛꜱ :</u></b></blockquote>
 
 ➥ /start ➻ <b>ꜱᴛᴀʀᴛ ʙᴏᴛ</b>
 ➥ /help ➻ <b>ᴏᴘᴇɴ ʜᴇʟᴘ ᴍᴇɴᴜ</b>
@@ -103,7 +103,7 @@ HELP_10 = """
 """
 
 HELP_11 = """
-<b><u>❖ ᴘʟᴀʏ ᴄᴏᴍᴍᴀɴᴅꜱ :</u></b>
+<blockquote expandable><b><u>❖ ᴘʟᴀʏ ᴄᴏᴍᴍᴀɴᴅꜱ :</u></b></blockquote>
 
 ➥ v ➻ ꜱᴛᴀɴᴅꜱ ꜰᴏʀ ᴠɪᴅᴇᴏ
 ➥ force ➻ ꜰᴏʀᴄᴇ ᴘʟᴀʏ
@@ -113,27 +113,27 @@ HELP_11 = """
 """
 
 HELP_12 = """
-<b><u>❖ ꜱʜᴜꜰꜰʟᴇ ǫᴜᴇᴜᴇ :</u></b>
+<blockquote expandable><b><u>❖ ꜱʜᴜꜰꜰʟᴇ ǫᴜᴇᴜᴇ :</u></b></blockquote>
 
 ➥ /shuffle ➻ <b>ꜱʜᴜꜰꜰʟᴇ ǫᴜᴇᴜᴇ</b>
 ➥ /queue ➻ <b>ꜱʜᴏᴡ ǫᴜᴇᴜᴇ</b>
 """
 
 HELP_13 = """
-<b><u>❖ ꜱᴇᴇᴋ ꜱᴛʀᴇᴀᴍ :</u></b>
+<blockquote expandable><b><u>❖ ꜱᴇᴇᴋ ꜱᴛʀᴇᴀᴍ :</u></b></blockquote>
 
 ➥ /seek ➻ <b>ꜱᴇᴇᴋ ᴛᴏ ᴛɪᴍᴇ</b>
 ➥ /seekback ➻ <b>ʙᴀᴄᴋᴡᴀʀᴅ ꜱᴇᴇᴋ</b>
 """
 
 HELP_14 = """
-<b><u>❖ ꜱᴏɴɢ ᴅᴏᴡɴʟᴏᴀᴅ :</u></b>
+<blockquote expandable><b><u>❖ ꜱᴏɴɢ ᴅᴏᴡɴʟᴏᴀᴅ :</u></b></blockquote>
 
 ➥ /song ➻ <b>ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴘ3 / ᴍᴘ4</b>
 """
 
 HELP_15 = """
-<b><u>❖ ꜱᴘᴇᴇᴅ ᴄᴏᴍᴍᴀɴᴅꜱ :</u></b>
+<blockquote expandable><b><u>❖ ꜱᴘᴇᴇᴅ ᴄᴏᴍᴍᴀɴᴅꜱ :</u></b></blockquote>
 
 ➥ ᴄᴏɴᴛʀᴏʟ ᴘʟᴀʏʙᴀᴄᴋ ꜱᴘᴇᴇᴅ [ᴀᴅᴍɪɴꜱ ᴏɴʟʏ]
 
@@ -142,13 +142,13 @@ HELP_15 = """
 """
 
 HELP_16 = """
-<b><u>❖ ᴘʀɪᴠᴀᴄʏ ᴘᴏʟɪᴄʏ :</u></b>
+<blockquote expandable><b><u>❖ ᴘʀɪᴠᴀᴄʏ ᴘᴏʟɪᴄʏ :</u></b></blockquote>
 
 ➥ /Privacy ➻ <b>ᴅɪꜱᴘʟᴀʏ ᴘʀɪᴠᴀᴄʏ ꜱᴛᴀᴛᴇᴍᴇɴᴛ</b>
 """
 
 HELP_17 = """
-<b><u>❖ ɢᴀᴍᴇꜱ</u></b>
+<blockquote expandable><b><u>❖ ɢᴀᴍᴇꜱ</u></b></blockquote>
 
 ➥ /dice ➻ <b>ʀᴏʟʟ ᴀ ᴅɪᴄᴇ</b>
 ➥ /ludo ➻ <b>ᴘʟᴀʏ ʟᴜᴅᴏ</b>
@@ -160,7 +160,7 @@ HELP_17 = """
 """
 
 HELP_18 = """
-<b><u>❖ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅs</u></b>
+<blockquote expandable><b><u>❖ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅs</u></b></blockquote>
 
 ➥ /ban ➻ <b>ʙᴀɴ ᴀ ᴜꜱᴇʀ</b>
 ➥ /banall ➻ <b>ʙᴀɴ ᴀʟʟ ᴜꜱᴇʀꜱ</b>
@@ -190,25 +190,25 @@ HELP_18 = """
 """
 
 HELP_19 = """
-<b><u>❖ ɪᴍᴀɢᴇ ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴏʀ :</u></b>
+<blockquote expandable><b><u>❖ ɪᴍᴀɢᴇ ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴏʀ :</u></b></blockquote>
 
 ➥ /tgm ➻ <b>ʀᴇᴘʟʏ ᴛᴏ ɪᴍᴀɢᴇ / ᴠɪᴅᴇᴏ / ɢɪꜰ</b>
 """
 
 HELP_20 = """
-<b><u>❖ ᴛᴀɢ ᴄᴏᴍᴍᴀɴᴅꜱ :</u></b>
+<blockquote expandable><b><u>❖ ᴛᴀɢ ᴄᴏᴍᴍᴀɴᴅꜱ :</u></b></blockquote>
 
 ➥ /tagall ➻ <b>ᴛᴀɢ ᴀʟʟ ᴜꜱᴇʀꜱ</b>
 ➥ /admins ➻ <b>ᴛᴀɢ ᴀʟʟ ᴀᴅᴍɪɴꜱ</b>
 """
 HELP_21 = """
-<b><u>❖ ᴅᴏᴡɴʟᴏᴀᴅ ᴠɪᴅᴇᴏꜱ :</u></b>
+<blockquote expandable><b><u>❖ ᴅᴏᴡɴʟᴏᴀᴅ ᴠɪᴅᴇᴏꜱ :</u></b></blockquote>
 
 ➥ /vid ➻ <b>ᴅᴏᴡɴʟᴏᴀᴅ ᴠɪᴅᴇᴏꜱ ꜰʀᴏᴍ ɪɴꜱᴛᴀ, ᴛᴡɪᴛᴛᴇʀ ᴀɴᴅ ᴍᴏʀᴇ</b>
 """
 
 HELP_22 = """
-<b><u>❖ ᴛᴇxᴛ ᴛᴏ ꜱᴘᴇᴇᴄʜ :</u></b>
+<blockquote expandable><b><u>❖ ᴛᴇxᴛ ᴛᴏ ꜱᴘᴇᴇᴄʜ :</u></b></blockquote>
 
 ➥ /tts ➻ <b>ᴄᴏɴᴠᴇʀᴛ ᴛᴇxᴛ ᴛᴏ ʜɪɴᴅɪ ꜱᴘᴇᴇᴄʜ</b>
 
@@ -217,34 +217,34 @@ HELP_22 = """
 """
 
 HELP_23 = """
-<b><u>❖ ɪɴᴠɪᴛᴇ ʟɪɴᴋ ᴄᴏᴍᴍᴀɴᴅꜱ :</u></b>
+<blockquote expandable><b><u>❖ ɪɴᴠɪᴛᴇ ʟɪɴᴋ ᴄᴏᴍᴍᴀɴᴅꜱ :</u></b></blockquote>
 
 ➥ /givelink ➻ <b>ɢᴇᴛ ᴄᴜʀʀᴇɴᴛ ᴄʜᴀᴛ ʟɪɴᴋ</b>
 ➥ /link ➻ <b>ɢᴇᴛ ɢʀᴏᴜᴘ ɪɴꜰᴏ & ɪɴᴠɪᴛᴇ ʟɪɴᴋ</b>
 """
 
 HELP_24 = """
-<b><u>❖ ꜰᴏʀᴄᴇ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ :</u></b>
+<blockquote expandable><b><u>❖ ꜰᴏʀᴄᴇ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ :</u></b></blockquote>
 
 ➥ /fsub ➻ <b>ꜱᴇᴛ ꜰᴏʀᴄᴇ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ</b>
 ➥ /fsub off ➻ <b>ᴅɪꜱᴀʙʟᴇ ꜰᴏʀᴄᴇ ꜱᴜʙ</b>
 """
 
 HELP_25 = """
-<b><u>❖ ᴢᴏᴍʙɪᴇ ᴀᴄᴄᴏᴜɴᴛꜱ :</u></b>
+<blockquote expandable><b><u>❖ ᴢᴏᴍʙɪᴇ ᴀᴄᴄᴏᴜɴᴛꜱ :</u></b></blockquote>
 
 ➥ /zombies ➻ <b>ʙᴀɴ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛꜱ</b>
 """
 
 HELP_26 = """
-<b><u>❖ ᴜꜱᴇʀ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ :</u></b>
+<blockquote expandable><b><u>❖ ᴜꜱᴇʀ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ :</u></b></blockquote>
 
 ➥ /info ➻ <b>ɢᴇᴛ ᴜꜱᴇʀ ɪɴꜰᴏ</b>
 ➥ /userinfo ➻ <b>ꜱᴀᴍᴇ ᴀꜱ /info</b>
 """
 
 HELP_27 = """
-<b><u>❖ ɢɪᴛʜᴜʙ ʀᴇᴘᴏ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ :</u></b>
+<blockquote expandable><b><u>❖ ɢɪᴛʜᴜʙ ʀᴇᴘᴏ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ :</u></b></blockquote>
 
 ➥ /downloadrepo ➻ <b>ᴅᴏᴡɴʟᴏᴀᴅ ᴀ ɢɪᴛʜᴜʙ ʀᴇᴘᴏ</b>
 
@@ -253,7 +253,7 @@ HELP_27 = """
 """
 
 HELP_28 = """
-<b><u>❖ ᴛʀᴜᴛʜ ᴏʀ ᴅᴀʀᴇ :</u></b>
+<blockquote expandable><b><u>❖ ᴛʀᴜᴛʜ ᴏʀ ᴅᴀʀᴇ :</u></b></blockquote>
 
 ➥ /truth ➻ <b>ɢᴇᴛ ᴛʀᴜᴛʜ ǫᴜᴇꜱᴛɪᴏɴ</b>  
 ➥ /dare ➻ <b>ɢᴇᴛ ᴅᴀʀᴇ ᴄʜᴀʟʟᴇɴɢᴇ</b>  
@@ -262,65 +262,65 @@ HELP_28 = """
 """
 
 HELP_29 = """
-<b><u>❖ ᴍᴏɴɢᴏᴅʙ ᴄʜᴇᴄᴋᴇʀ :</u></b>
+<blockquote expandable><b><u>❖ ᴍᴏɴɢᴏᴅʙ ᴄʜᴇᴄᴋᴇʀ :</u></b></blockquote>
 
 ➥ /mongochk ➻ <b>ᴄʜᴇᴄᴋ ᴍᴏɴɢᴏᴅʙ ᴄᴏɴɴᴇᴄᴛɪᴏɴ</b>
 """
 
 HELP_30 = """
-<b><u>❖ ꜰᴏɴᴛ ᴄᴏɴᴠᴇʀᴛᴇʀ :</u></b>
+<blockquote expandable><b><u>❖ ꜰᴏɴᴛ ᴄᴏɴᴠᴇʀᴛᴇʀ :</u></b></blockquote>
 
 ➥ /font ➻ <b>ᴄᴏɴᴠᴇʀᴛ ᴛᴇxᴛ ɪɴᴛᴏ ꜱᴛʏʟɪꜱʜ ꜰᴏɴᴛ</b>
 """
 
 HELP_31 = """
-<b><u>❖ ɢᴀʟɪ ᴄᴏᴍᴍᴀɴᴅꜱ :</u></b>
+<blockquote expandable><b><u>❖ ɢᴀʟɪ ᴄᴏᴍᴍᴀɴᴅꜱ :</u></b></blockquote>
 
 ➥ /gali ➻ <b>ʀᴀɴᴅᴏᴍ ɢᴀʟɪ (ᴅᴍ ᴏɴʟʏ)</b>
 ➥ .gali ➻ <b>ᴀʟᴛᴇʀɴᴀᴛᴇ ᴄᴏᴍᴍᴀɴᴅ 💢</b>
 """
 
 HELP_32 = """
-<b><u>❖ ʙᴏᴛ ʟɪꜱᴛ :</u></b>
+<blockquote expandable><b><u>❖ ʙᴏᴛ ʟɪꜱᴛ :</u></b></blockquote>
 
 ➥ /bots ➻ <b>ꜱʜᴏᴡ ɢʀᴏᴜᴘ ʙᴏᴛꜱ</b>
 """
 
 HELP_33 = """
-<b><u>❖ ᴍᴀʀᴋᴅᴏᴡɴ ʜᴇʟᴘ :</u></b>
+<blockquote expandable><b><u>❖ ᴍᴀʀᴋᴅᴏᴡɴ ʜᴇʟᴘ :</u></b></blockquote>
 
 ➥ /markdownhelp ➻ <b>ᴍᴀʀᴋᴅᴏᴡɴ ꜰᴏʀᴍᴀᴛɪɴɢ ʜᴇʟᴘ</b>
 """
 
 HELP_34 = """
-<b><u>❖ ᴡɪꜱʜ ᴛᴀɢ ʜᴇʟᴘ :</u></b>
+<blockquote expandable><b><u>❖ ᴡɪꜱʜ ᴛᴀɢ ʜᴇʟᴘ :</u></b></blockquote>
 
-🌅 ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ
+<blockquote expandable>🌅 ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ</blockquote>
 ➥ /gmtag ➻ <b>ꜱᴛᴀʀᴛ ɢᴍ ᴛᴀɢ</b>
 ➥ /gmstop ➻ <b>ꜱᴛᴏᴘ ɢᴍ ᴛᴀɢ</b>
 
-🌞 ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ
+<blockquote expandable>🌞 ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ</blockquote>
 ➥ /gatag ➻ <b>ꜱᴛᴀʀᴛ ɢᴀ ᴛᴀɢ</b>
 ➥ /gastop ➻ <b>ꜱᴛᴏᴘ ɢᴀ ᴛᴀɢ</b>
 
-🌙 ɢᴏᴏᴅ ɴɪɢʜᴛ
+<blockquote expandable>🌙 ɢᴏᴏᴅ ɴɪɢʜᴛ</blockquote>
 ➥ /gntag ➻ <b>ꜱᴛᴀʀᴛ ɢɴ ᴛᴀɢ</b>
 ➥ /gnstop ➻ <b>ꜱᴛᴏᴘ ɢɴ ᴛᴀɢ</b>
 
-⚙️ ᴜᴛɪʟɪᴛʏ
+<blockquote expandable>⚙️ ᴜᴛɪʟɪᴛʏ</blockquote>
 ➥ /stopall ➻ <b>ꜱᴛᴏᴘ ᴀʟʟ ᴛᴀɢꜱ</b>
 ➥ /taghelp ➻ <b>ᴏᴘᴇɴ ʜᴇʟᴘ</b>
 """
 
 HELP_35 = """
-<b><u>❖ ᴡᴇʟᴄᴏᴍᴇ ᴍᴇꜱꜱᴀɢᴇ :</u></b>
+<blockquote expandable><b><u>❖ ᴡᴇʟᴄᴏᴍᴇ ᴍᴇꜱꜱᴀɢᴇ :</u></b></blockquote>
 
 ➥ /welcome on/off ➻ <b>ᴛᴏɢɢʟᴇ ᴡᴇʟᴄᴏᴍᴇ</b>
 ➥ /awelcome on/off ➻ <b>ᴛᴏɢɢʟᴇ ᴀꜱꜱɪꜱᴛᴀɴᴛ ᴡᴇʟᴄᴏᴍᴇ</b>
 """
 
 HELP_36 = """
-<b><u>❖ ᴄᴏᴜᴘʟᴇ ᴏꜰ ᴛʜᴇ ᴅᴀʏ :</u></b>
+<blockquote expandable><b><u>❖ ᴄᴏᴜᴘʟᴇ ᴏꜰ ᴛʜᴇ ᴅᴀʏ :</u></b></blockquote>
 
 ➥ /couple ➻ <b>ʀᴀɴᴅᴏᴍ ᴄᴏᴜᴘʟᴇ ❤️</b>
 ➥ /couples ➻ <b>ꜱᴀᴍᴇ ᴀꜱ /couple 💏</b>
@@ -329,16 +329,15 @@ HELP_36 = """
 """
 
 HELP_37 = """
-<b><u>❖ ʀᴛᴍᴘꜱ ꜱᴛʀᴇᴀᴍ :</u></b>
+<blockquote expandable><b><u>❖ ʀᴛᴍᴘꜱ ꜱᴛʀᴇᴀᴍ :</u></b></blockquote>
 
 ➥ <b>ꜱᴜᴘᴘᴏʀᴛᴇᴅ ʙᴏᴛꜱ :</b>
 
-• @ShrutixMusicbot
-• @M4_Music_BoT
+
 """
 
 HELP_38 = """
-<b><u>❖ ʟᴏᴠᴇ ʙɪʀᴅꜱ ᴛᴏᴏʟꜱ :</u></b>
+<blockquote expandable><b><u>❖ ʟᴏᴠᴇ ʙɪʀᴅꜱ ᴛᴏᴏʟꜱ :</u></b></blockquote>
 
 🎁 ɢɪғᴛꜱ
 ➥ /gifts ➻ <b>ꜱʜᴏᴡ ɢɪғᴛꜱ</b>
@@ -356,7 +355,7 @@ HELP_38 = """
 """
 
 HELP_39 = """
-<b><u>❖ ᴠᴄ ʟᴏɢɢᴇʀ :</u></b>
+<blockquote expandable><b><u>❖ ᴠᴄ ʟᴏɢɢᴇʀ :</u></b></blockquote>
 
 ➥ /vclogger ➻ <b>ᴄʜᴇᴄᴋ ꜱᴛᴀᴛᴜꜱ</b>
 ➥ /vclogger on ➻ <b>ᴇɴᴀʙʟᴇ</b>
