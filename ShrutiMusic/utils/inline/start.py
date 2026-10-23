@@ -45,12 +45,6 @@ def private_panel(_):
                 url="https://t.me/CarelessxCoder"
             )
         ],
-        [
-            InlineKeyboardButton(
-                text="⌯ 𝐌ʏ 𝐌ᴀsᴛᴇʀ ⌯",
-                user_id=config.OWNER_ID
-            )
-        ],
     ]
     return buttons
 
